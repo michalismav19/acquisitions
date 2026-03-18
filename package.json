@@ -1,0 +1,16 @@
+{
+  "name": "acquisitions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js"
+  },
+  "repository": "https://github.com/michalismav19/acquisitions.git",
+  "author": "Michalis Mavromatakis <m.mavromatakis@flexcar.gr>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  }
+}
