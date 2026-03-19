@@ -1,7 +1,7 @@
 // Is about  running the server
 // Implementing logging
 // Everything to know that server running properly
-import app from "./app.js";
+import app from './app.js';
 
 const PORT = process.env.PORT || 3000;
 
