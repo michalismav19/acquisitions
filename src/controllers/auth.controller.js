@@ -17,7 +17,7 @@ export const signup = async (req, res, next) => {
     const { name, email, password, role } = validationResult.data;
 
     // Auth service
-    const user = await createUser({ name, email, password, role });
+    const user = await createUser(name, email, password, role);
 
     logger.info(`User registered successgully: ${email}`);
 
