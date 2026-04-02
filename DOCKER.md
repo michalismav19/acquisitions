@@ -7,7 +7,7 @@ This document explains how to run the **acquisitions** API locally with Neon Loc
 ## How it works
 
 | Environment | Database           | Compose file              | Dockerfile target |
-|-------------|--------------------|---------------------------|-------------------|
+| ----------- | ------------------ | ------------------------- | ----------------- |
 | Development | Neon Local (proxy) | `docker-compose.dev.yml`  | `development`     |
 | Production  | Neon Cloud         | `docker-compose.prod.yml` | `production`      |
 
@@ -36,11 +36,11 @@ cp .env.development.example .env.development
 
 Open `.env.development` and fill in:
 
-| Variable           | Where to find it                                          |
-|--------------------|-----------------------------------------------------------|
-| `NEON_API_KEY`     | Neon Console → Account Settings → API Keys               |
-| `NEON_PROJECT_ID`  | Neon Console → Project Settings → General                 |
-| `PARENT_BRANCH_ID` | Neon Console → Branches → click your main branch → ID    |
+| Variable           | Where to find it                                      |
+| ------------------ | ----------------------------------------------------- |
+| `NEON_API_KEY`     | Neon Console → Account Settings → API Keys            |
+| `NEON_PROJECT_ID`  | Neon Console → Project Settings → General             |
+| `PARENT_BRANCH_ID` | Neon Console → Branches → click your main branch → ID |
 
 Leave `DATABASE_URL` and `NEON_LOCAL_ENDPOINT` exactly as they are in the example file — they point to the `neon-local` Docker service.
 
@@ -110,16 +110,16 @@ curl http://localhost:3000/health
 
 ## Environment variable reference
 
-| Variable               | Dev | Prod | Description                                                      |
-|------------------------|-----|------|------------------------------------------------------------------|
-| `PORT`                 | ✓   | ✓    | HTTP port the app listens on (default `3000`)                    |
-| `NODE_ENV`             | ✓   | ✓    | `development` or `production`                                    |
-| `LOG_LEVEL`            | ✓   | ✓    | Winston log level (`debug`, `info`, `warn`, `error`)             |
-| `DATABASE_URL`         | ✓   | ✓    | Postgres connection string                                        |
-| `NEON_LOCAL_ENDPOINT`  | ✓   | —    | HTTP endpoint for Neon Local proxy (`http://neon-local:5432/sql`) |
-| `NEON_API_KEY`         | ✓   | —    | Neon API key (used only by the `neon-local` container)           |
-| `NEON_PROJECT_ID`      | ✓   | —    | Neon project ID (used only by the `neon-local` container)        |
-| `PARENT_BRANCH_ID`     | ✓   | —    | Branch to fork from when creating the ephemeral dev branch       |
+| Variable              | Dev | Prod | Description                                                       |
+| --------------------- | --- | ---- | ----------------------------------------------------------------- |
+| `PORT`                | ✓   | ✓    | HTTP port the app listens on (default `3000`)                     |
+| `NODE_ENV`            | ✓   | ✓    | `development` or `production`                                     |
+| `LOG_LEVEL`           | ✓   | ✓    | Winston log level (`debug`, `info`, `warn`, `error`)              |
+| `DATABASE_URL`        | ✓   | ✓    | Postgres connection string                                        |
+| `NEON_LOCAL_ENDPOINT` | ✓   | —    | HTTP endpoint for Neon Local proxy (`http://neon-local:5432/sql`) |
+| `NEON_API_KEY`        | ✓   | —    | Neon API key (used only by the `neon-local` container)            |
+| `NEON_PROJECT_ID`     | ✓   | —    | Neon project ID (used only by the `neon-local` container)         |
+| `PARENT_BRANCH_ID`    | ✓   | —    | Branch to fork from when creating the ephemeral dev branch        |
 
 ---
 

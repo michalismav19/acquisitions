@@ -5,7 +5,13 @@ import {
   updateUserSchema,
   changePasswordSchema,
 } from '#validations/user.validation.js';
-import { getUsers, getUser, updateUser, deleteUser, changePassword } from '#services/users.services.js';
+import {
+  getUsers,
+  getUser,
+  updateUser,
+  deleteUser,
+  changePassword,
+} from '#services/users.services.js';
 
 export const fetchUsers = async (req, res, next) => {
   try {
@@ -90,7 +96,11 @@ export const changePasswordHandler = async (req, res, next) => {
     }
 
     const { currentPassword, newPassword } = body.data;
-    const result = await changePassword(params.data.id, currentPassword, newPassword);
+    const result = await changePassword(
+      params.data.id,
+      currentPassword,
+      newPassword
+    );
     if (!result) return res.status(404).json({ error: 'User not found' });
 
     res.status(200).json({ message: 'Password changed successfully' });
