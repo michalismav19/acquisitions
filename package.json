@@ -21,7 +21,8 @@
     "format:check": "prettier --check .",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "repository": "https://github.com/michalismav19/acquisitions.git",
   "author": "Michalis Mavromatakis <m.mavromatakis@flexcar.gr>",
@@ -47,6 +48,9 @@
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
-    "prettier": "^3.8.1"
+    "jest": "^30.3.0",
+    "pg": "^8.14.1",
+    "prettier": "^3.8.1",
+    "supertest": "^7.2.2"
   }
 }
