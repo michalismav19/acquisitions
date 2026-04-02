@@ -19,29 +19,29 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
       - name: Run ESLint
         id: eslint
-        run: npm run lint
+        run: yarn lint
         continue-on-error: true
 
       - name: Annotate ESLint failure
         if: steps.eslint.outcome == 'failure'
         run: |
-          echo "::error title=ESLint failed::Lint errors were found. Run 'npm run lint:fix' locally to auto-fix them, then commit the changes."
+          echo "::error title=ESLint failed::Lint errors were found. Run 'yarn lint:fix' locally to auto-fix them, then commit the changes."
           exit 1
 
       - name: Run Prettier check
         id: prettier
-        run: npm run format:check
+        run: yarn format:check
         continue-on-error: true
 
       - name: Annotate Prettier failure
         if: steps.prettier.outcome == 'failure'
         run: |
-          echo "::error title=Prettier check failed::Formatting issues were found. Run 'npm run format' locally to fix them, then commit the changes."
+          echo "::error title=Prettier check failed::Formatting issues were found. Run 'yarn format' locally to fix them, then commit the changes."
           exit 1
