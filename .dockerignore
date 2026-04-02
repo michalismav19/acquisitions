@@ -1,0 +1,22 @@
+node_modules
+npm-debug.log*
+
+# Git
+.git
+.gitignore
+
+# Environment files — injected at runtime, never baked into image
+.env
+.env.*
+
+# Editor / OS
+.vscode
+.DS_Store
+*.swp
+
+# Drizzle studio output
+.drizzle
+
+# Logs
+logs
+*.log

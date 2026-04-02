@@ -1,0 +1,38 @@
+services:
+  # ------------------------------------------------------------------
+  # Neon Local — spins up a proxy that talks to Neon Cloud and creates
+  # an ephemeral branch automatically on start, deletes it on stop.
+  # ------------------------------------------------------------------
+  neon-local:
+    image: neondatabase/neon_local:latest
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env.development
+    healthcheck:
+      test: ['CMD-SHELL', 'nc -z localhost 5432 || exit 1']
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  # ------------------------------------------------------------------
+  # Application — dev target with source mounted for hot-reload
+  # ------------------------------------------------------------------
+  app:
+    build:
+      context: .
+      target: development
+    ports:
+      - '${PORT:-3000}:3000'
+    env_file:
+      - .env.development
+    volumes:
+      # Mount source for hot-reload (node --watch)
+      - .:/app
+      # Keep the container's node_modules separate from the host's
+      - /app/node_modules
+    depends_on:
+      neon-local:
+        condition: service_healthy
+    restart: unless-stopped

@@ -1,0 +1,22 @@
+services:
+
+  # ------------------------------------------------------------------
+  # Application — production image, connects directly to Neon Cloud.
+  # No local proxy. DATABASE_URL is the full Neon Cloud connection
+  # string injected via .env.production (or a secrets manager).
+  # ------------------------------------------------------------------
+  app:
+    build:
+      context: .
+      target: production
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env.production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
